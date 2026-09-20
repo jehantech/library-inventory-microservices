@@ -1,0 +1,32 @@
+services:
+
+  inventory-service:
+    build:
+      context: ./inventory-service
+    container_name: inventory-service
+    ports:
+      - "8002:8002"
+    environment:
+      DATABASE_URL: sqlite:////data/inventory.db
+    volumes:
+      - inventory-data:/data
+    restart: unless-stopped
+
+  library-service:
+    build:
+      context: ./library-service
+    container_name: library-service
+    ports:
+      - "8001:8001"
+    environment:
+      DATABASE_URL: sqlite:////data/library.db
+      INVENTORY_SERVICE_URL: http://inventory-service:8002
+    volumes:
+      - library-data:/data
+    depends_on:
+      - inventory-service
+    restart: unless-stopped
+
+volumes:
+  library-data:
+  inventory-data:
