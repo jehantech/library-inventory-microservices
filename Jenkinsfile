@@ -13,25 +13,25 @@ pipeline {
             steps {
                 bat 'git --version'
                 bat 'docker --version'
-                bat 'docker compose version'
+                bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" version'
             }
         }
 
         stage('Build Docker Images') {
             steps {
-                bat 'docker compose build'
+                bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -f docker-compose.yml build'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat 'docker compose up -d'
+                bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -f docker-compose.yml up -d'
             }
         }
 
         stage('Check Services') {
             steps {
-                bat 'docker compose ps'
+                bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -f docker-compose.yml ps'
             }
         }
     }
