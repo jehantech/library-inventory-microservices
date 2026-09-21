@@ -18,6 +18,7 @@ pipeline {
         }
 
         stage('Build Docker Images') {
+         // Run the build script
             steps {
                 bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -f docker-compose.yml build'
             }
