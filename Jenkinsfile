@@ -24,15 +24,15 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -f docker-compose.yml up -d'
-            }
+    	    steps {
+                bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -p   devproject -f docker-compose.yml up -d'
+           }
         }
 
         stage('Check Services') {
-            steps {
-                bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -f docker-compose.yml ps'
-            }
+    	     steps {
+                 bat '"C:\\Users\\jehan\\AppData\\Local\\Programs\\DockerDesktop\\resources\\cli-plugins\\docker-compose.exe" -p devproject -f docker-compose.yml ps'
+           }
         }
     }
 }
